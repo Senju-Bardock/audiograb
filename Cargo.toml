@@ -1,0 +1,16 @@
+[package]
+name = "audiograb"
+version = "0.1.0"
+edition = "2021"
+description = "Fast, concurrent audio downloader with pluggable backends (yt-dlp/ffmpeg today, native Rust tomorrow)"
+publish = false
+
+# Phase 1 is intentionally dependency-free: std threads + std::process.
+# Phase 2 (native HTTP/HLS) is where tokio and an HTTP client come in.
+[dependencies]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
